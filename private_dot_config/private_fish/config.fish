@@ -16,6 +16,9 @@ abbr ghc "gh copilot"
 abbr ghe "gh copilot explain"
 abbr ghs "gh copilot suggest"
 
+## Chezmoi abbreviation
+abbr cm "chezmoi"
+
 ### Settings for pj package
 abbr -a pjo pj open
 

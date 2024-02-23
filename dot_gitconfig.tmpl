@@ -7,7 +7,7 @@
 	name = Bryan Niwa
 	email = {{ .email | quote }}
 
-{{- if eq .hostname "work-pc" }}
+{{- if eq .profile "work" }}
 [includeIf "gitdir:~/projects/webb-enterphone-directory/.git"]
 	autocrlf = false
 {{- end}}

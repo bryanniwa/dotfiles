@@ -17,3 +17,6 @@ style = 'bold yellow'
 
 [git_branch]
 symbol = ' '
+
+[c]
+detect_extensions = ["c", "h", "cpp", "cc", "hh", "hpp"]

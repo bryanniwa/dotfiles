@@ -3,13 +3,25 @@
 	editor = nvim
 	excludesfile = /home/bniwa/.gitignore
 	pager = diff-so-fancy | less --tabs=4 -RF
+
 [user]
 	name = Bryan Niwa
 	email = {{ .email | quote }}
+  {{- if eq .profile "personal" }}
+  signingkey = /home/bniwa/.ssh/id_ed25519.pub
+  {{- end}}
 
 {{- if eq .profile "work" }}
 [includeIf "gitdir:~/projects/webb-enterphone-directory/.git"]
 	autocrlf = false
+{{- end}}
+
+{{- if eq .profile "personal" }}
+[gpg]
+	format = ssh
+
+[commit]
+	gpgsign = true
 {{- end}}
 
 [alias]
@@ -21,20 +33,25 @@
     lg1-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'
     lg2-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
     lg3-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset) %C(bold cyan)(committed: %cD)%C(reset) %C(auto)%d%C(reset)%n''          %C(white)%s%C(reset)%n''          %C(dim white)- %an <%ae> %C(reset) %C(dim white)(committer: %cn <%ce>)%C(reset)'
+
 [init]
 	defaultBranch = main
+
 [interactive]
 	diffFilter = diff-so-fancy --patch
+
 [diff-so-fancy]
 	markEmptyLines = false
 
 [color]
 	ui = true
+
 [color "diff-highlight"]
 	oldNormal = red bold
 	oldHighlight = red bold 52
 	newNormal = green bold
 	newHighlight = green bold 22
+
 [color "diff"]
 	meta = 11
 	frag = magenta bold
@@ -43,16 +60,22 @@
 	old = red bold
 	new = green bold
 	whitespace = red reverse
+
 [merge]
 	conflictstyle = zdiff3
+
 [help]
 	autocorrect = prompt
+
 [branch]
 	sort = -committerdate
+
 [diff]
 	algorithm = histogram
 	submodule = log
+
 [submodule]
 	recurse = true
+
 [status]
 	submoduleSummary = true

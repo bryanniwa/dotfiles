@@ -3,5 +3,5 @@
 -- Add any additional keymaps here
 
 vim.keymap.set("n", "cp", "ciw<C-r>0<ESC>", { noremap = true }) -- replace the current word with the last yanked one
-vim.keymap.set("i", "jk", "<Esc>", { noremap = true }) -- Exit insert mode with jk
-vim.keymap.set("i", "kj", "<Esc>", { noremap = true }) -- Exit insert mode with kj
+vim.keymap.set("i", "jk", "<Esc>", { noremap = true })
+vim.keymap.set("i", "kj", "<Esc>", { noremap = true })

@@ -1,5 +1,12 @@
 {
   "extras": [
+    {{- if eq .profile "work" }}
+    "lazyvim.plugins.extras.lang.typescript",
+    "lazyvim.plugins.extras.formatting.prettier",
+    {{- end }}
+    {{- if eq .profile "personal" }}
+    "lazyvim.plugins.extras.lang.rust",
+    {{- end }}
     "lazyvim.plugins.extras.coding.copilot",
     "lazyvim.plugins.extras.coding.yanky",
     "lazyvim.plugins.extras.dap.core",
@@ -11,14 +18,7 @@
     "lazyvim.plugins.extras.lang.python",
     "lazyvim.plugins.extras.lang.yaml",
     "lazyvim.plugins.extras.test.core",
-    "lazyvim.plugins.extras.ui.edgy",
-    {{- if eq .profile "work" }}
-    "lazyvim.plugins.extras.lang.typescript",
-    "lazyvim.plugins.extras.formatting.prettier",
-    {{- end }}
-    {{- if eq .profile "personal" }}
-    "lazyvim.plugins.extras.lang.rust",
-    {{- end }}
+    "lazyvim.plugins.extras.ui.edgy"
   ],
   "news": {
     "NEWS.md": "2123"

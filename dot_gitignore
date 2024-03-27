@@ -1,4 +1,5 @@
 .venv
 .python-version
 .prettierrc
+.nvim.lua
 __pycache__/

@@ -56,7 +56,6 @@ set -gx ANDROID_HOME $HOME/src/android-sdk
 ### Misc
 set -gx EDITOR nvim
 set -gx GO_PATH $HOME/.go
-set -gx PROJECT_PATHS $HOME/projects
 
 # opam configuration
 source /home/bniwa/.opam/opam-init/init.fish >/dev/null 2>/dev/null; or true

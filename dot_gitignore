@@ -2,4 +2,6 @@
 .python-version
 .prettierrc
 .nvim.lua
+compile_commands.json
 __pycache__/
+.cache/

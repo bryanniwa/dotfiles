@@ -1,12 +1,8 @@
 {
   "extras": [
-    {{- if eq .profile "work" }}
     "lazyvim.plugins.extras.lang.typescript",
     "lazyvim.plugins.extras.formatting.prettier",
-    {{- end }}
-    {{- if eq .profile "personal" }}
     "lazyvim.plugins.extras.lang.rust",
-    {{- end }}
     "lazyvim.plugins.extras.coding.copilot",
     "lazyvim.plugins.extras.coding.yanky",
     "lazyvim.plugins.extras.dap.core",

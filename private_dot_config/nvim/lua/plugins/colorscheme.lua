@@ -11,13 +11,12 @@ return {
 
   "sainnhe/gruvbox-material",
   "sainnhe/everforest",
-  "rmehri01/onenord.nvim",
-  "nyoom-engineering/oxocarbon.nvim",
+  "savq/melange-nvim",
 
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "gruvbox-material",
+      colorscheme = "melange",
     },
   },
 }

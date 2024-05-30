@@ -2,9 +2,9 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
-starship init fish | source
-
 zoxide init fish | source
+
+source ~/.asdf/asdf.fish
 
 ### Navigation Helpers
 alias ... "cd ../.."
@@ -36,7 +36,7 @@ if gh extension list | grep -q github/gh-copilot
 
     alias cghs copilot_gh_suggest
 
-    # Functiont to handle Copilot explain
+    # Function to handle Copilot explain
     function copilot_explain
         gh copilot explain "$argv"
     end
@@ -50,10 +50,13 @@ abbr cm chezmoi
 ### Settings for pj package
 abbr -a pjo pj open
 
-### Flutter/Android Development
-set -gx ANDROID_HOME $HOME/src/android-sdk
+### Neovim/Neovide
+alias nvi "/mnt/c/Program\ Files/Neovide/neovide.exe"
+set -gx XDG_RUNTIME_DIR /tmp/
 
 ### Misc
+alias here "explorer.exe ."
+fzf_configure_bindings --directory=\cd
 set -gx EDITOR nvim
 set -gx GO_PATH $HOME/.go
 
@@ -63,13 +66,20 @@ source /home/bniwa/.opam/opam-init/init.fish >/dev/null 2>/dev/null; or true
 # Enable true color support
 set -g fish_term24bit true
 
-# pyenv configuration
-pyenv init - | source
-status --is-interactive; and pyenv virtualenv-init - | source
-
 # Automatically activate virtualenvs
 if set -q VIRTUAL_ENV
     if test -e .venv
-        vf activate (cat .venv)
+        if test -f .venv
+            vf activate (cat .venv)
+        else
+            source .venv/bin/activate.fish
+        end
     end
 end
+
+{{- if eq .profile "work" }}
+# Add route for 10.10.90.0/24 range
+if not ip route show | grep -q "via 10.10.90.200"
+    sudo ip route add 10.10.90.0/24 via 10.10.90.200
+end
+{{- end}}

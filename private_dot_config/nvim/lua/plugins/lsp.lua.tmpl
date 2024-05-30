@@ -1,19 +1,31 @@
-{{- if eq .profile "work"}}
 return {
   "neovim/nvim-lspconfig",
   opts = {
     servers = {
+      lua_ls = {
+        settings = {
+          Lua = {
+            diagnostics = {
+              globals = { "vim" },
+            },
+          },
+        },
+      },
       pyright = {
         settings = {
+          pyright = {
+            disableOrganizeImports = true,
+          },
+{{- if eq .profile "work"}}
           python = {
             analysis = {
               typeCheckingMode = "off",
               ignore = { "*" },
             },
+{{- end }}
           },
         },
       },
     },
   },
 }
-{{- end }}

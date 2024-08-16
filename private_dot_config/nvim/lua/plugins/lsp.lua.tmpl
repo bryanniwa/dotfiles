@@ -26,6 +26,20 @@ return {
 {{- end }}
         },
       },
+{{- if eq .profile "work"}}
+      -- We want this enabled by default but copy this section to the .lazy.lua file of any legacy project
+      -- for which you want to disable type checking.
+      -- basedpyright = {
+      --   settings = {
+      --     basedpyright = {
+      --       analysis = {
+      --         ignore = { "*" }, -- this can be used to suppress error messages to prioritize ruff while still keeping other features like type hints
+      --         typeCheckingMode = "off",
+      --       },
+      --     },
+      --   },
+      -- },
+{{- end }}
     },
   },
 }

@@ -47,14 +47,15 @@ end
 ## Chezmoi abbreviation
 abbr cm chezmoi
 
-### Settings for pj package
-abbr -a pjo pj open
+### Neovim
+set -gx XDG_RUNTIME_DIR /tmp/
 
 ### Misc
 alias here "explorer.exe ."
-fzf_configure_bindings --directory=\cd
+fzf_configure_bindings --directory=\cd # sets the fzf keymap to find a file to ctrl-d
 set -gx EDITOR nvim
 set -gx GO_PATH $HOME/.go
+set -gx MANPAGER "nvim +Man!"
 
 # opam configuration
 source /home/bniwa/.opam/opam-init/init.fish >/dev/null 2>/dev/null; or true

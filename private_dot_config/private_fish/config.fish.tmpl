@@ -47,8 +47,10 @@ end
 ## Chezmoi abbreviation
 abbr cm chezmoi
 
+{{- if eq .profile "personal" }}
 ### Neovim
 set -gx XDG_RUNTIME_DIR /tmp/
+{{- end}}
 
 ### Misc
 alias here "explorer.exe ."

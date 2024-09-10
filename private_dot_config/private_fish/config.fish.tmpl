@@ -15,35 +15,6 @@ abbr ls eza
 abbr ll "eza -l"
 abbr la "eza -la"
 
-### Copilot CLI Aliases
-if gh extension list | grep -q github/gh-copilot
-    function copilot_shell_suggest
-        gh copilot suggest -t shell "$argv"
-    end
-    alias css copilot_shell_suggest
-
-    # Function to handle Git command suggestions
-    function copilot_git_suggest
-        gh copilot suggest -t git "$argv"
-    end
-
-    alias cgs copilot_git_suggest
-
-    # Function to handle GitHub CLI command suggestions
-    function copilot_gh_suggest
-        gh copilot suggest -t gh "$argv"
-    end
-
-    alias cghs copilot_gh_suggest
-
-    # Function to handle Copilot explain
-    function copilot_explain
-        gh copilot explain "$argv"
-    end
-
-    alias ce copilot_explain
-end
-
 ## Chezmoi abbreviation
 abbr cm chezmoi
 

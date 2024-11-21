@@ -6,8 +6,3 @@ vim.g.python3_host_prog = "~/.virtualenvs/nvim/bin/python"
 
 vim.g.lazyvim_python_ruff = "ruff"
 vim.g.lazyvim_python_lsp = "basedpyright"
-
-vim.g.lazyvim_statuscolumn = {
-  folds_open = true,
-  folds_githl = true,
-}

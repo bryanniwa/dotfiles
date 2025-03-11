@@ -23,8 +23,13 @@ abbr cm chezmoi
 set -gx XDG_RUNTIME_DIR /tmp/
 {{- end}}
 
+### Docker abbreviations
+abbr dc docker compose
+
 ### Misc
+{{- if eq .profile "personal" }}
 alias here "explorer.exe ."
+{{- end}}
 fzf_configure_bindings --directory=\cd # sets the fzf keymap to find a file to ctrl-d
 set -gx EDITOR nvim
 set -gx GO_PATH $HOME/.go

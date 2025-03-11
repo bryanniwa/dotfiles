@@ -5,3 +5,5 @@
 vim.g.python3_host_prog = "~/.virtualenvs/nvim/bin/python"
 
 vim.g.lazyvim_python_lsp = "basedpyright"
+
+vim.o.diffopt = "internal,filler,closeoff,linematch:40,vertical,algorithm:histogram"

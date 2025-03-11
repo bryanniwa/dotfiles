@@ -9,3 +9,13 @@ vim.keymap.set("i", "kj", "<Esc>", { noremap = true })
 vim.keymap.set({ "n", "v" }, "<C-S-v>", '"+P')
 vim.keymap.set("c", "<C-S-v>", "<C-R>+")
 vim.keymap.set("i", "<C-S-v>", '<ESC>l"+Pli')
+
+vim.keymap.set("n", "<leader>ms", function()
+  Snacks.terminal("spotify_player")
+end)
+
+-- Improved upper/lower case motions
+vim.keymap.set("n", "<M-u>", "gul")
+vim.keymap.set("n", "<M-U>", "gUl")
+vim.keymap.set("v", "<M-u>", "gu")
+vim.keymap.set("v", "<M-U>", "gU")

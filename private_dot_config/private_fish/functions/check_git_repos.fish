@@ -17,8 +17,10 @@ function check_git_repos
             set has_changes 1
         end
 
-        # Check for unpushed commits
+        # Get current branch
         set -l current_branch (git rev-parse --abbrev-ref HEAD 2>/dev/null)
+
+        # Check for unpushed commits on current branch
         if test -n "$current_branch"; and test "$current_branch" != HEAD
             set -l remote (git config --get branch.$current_branch.remote 2>/dev/null)
             set -l remote_branch (git config --get branch.$current_branch.merge 2>/dev/null)
@@ -34,6 +36,27 @@ function check_git_repos
             else
                 set_color yellow
                 echo "$repo_name: Branch '$current_branch' is not tracking any remote branch"
+                set_color normal
+                set has_changes 1
+            end
+        end
+
+        # Check for other local branches with unpushed commits
+        for branch in (git for-each-ref --format='%(refname:short)' refs/heads/ | grep -v "^$current_branch\$")
+            set -l remote (git config --get branch.$branch.remote 2>/dev/null)
+            set -l remote_branch (git config --get branch.$branch.merge 2>/dev/null)
+
+            if test -n "$remote"; and test -n "$remote_branch"
+                set remote_branch (string replace "refs/heads/" "" $remote_branch)
+                if test (git log $remote/$remote_branch..$branch --oneline 2>/dev/null | wc -l) -gt 0
+                    set_color blue
+                    echo "$repo_name: Branch '$branch' has unpushed commits"
+                    set_color normal
+                    set has_changes 1
+                end
+            else
+                set_color cyan
+                echo "$repo_name: Branch '$branch' is not tracking any remote branch"
                 set_color normal
                 set has_changes 1
             end

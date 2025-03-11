@@ -4,7 +4,7 @@ end
 
 zoxide init fish | source
 
-source ~/.asdf/asdf.fish
+pyenv init - | source
 
 ### Navigation Helpers
 alias ... "cd ../.."
@@ -14,6 +14,14 @@ alias .... "cd ../../.."
 abbr ls eza
 abbr ll "eza -l"
 abbr la "eza -la"
+abbr lt "eza -T"
+
+### Docker Compose abbreviations
+abbr dc docker compose
+
+### Git abbreviations
+abbr gswm git switch \(__git.default_branch\)
+abbr gswd git switch develop
 
 ## Chezmoi abbreviation
 abbr cm chezmoi
@@ -29,32 +37,17 @@ abbr dc docker compose
 ### Misc
 {{- if eq .profile "personal" }}
 alias here "explorer.exe ."
-{{- end}}
-fzf_configure_bindings --directory=\cd # sets the fzf keymap to find a file to ctrl-d
+{{- else if eq .profile "work" }}
+alias here "open ."
+{{- end }}
 set -gx EDITOR nvim
 set -gx GO_PATH $HOME/.go
 set -gx MANPAGER "nvim +Man!"
 
-# opam configuration
-source /home/bniwa/.opam/opam-init/init.fish >/dev/null 2>/dev/null; or true
-
 # Enable true color support
 set -g fish_term24bit true
 
-# Automatically activate virtualenvs
-if set -q VIRTUAL_ENV
-    if test -e .venv
-        if test -f .venv
-            vf activate (cat .venv)
-        else
-            source .venv/bin/activate.fish
-        end
-    end
-end
-
 {{- if eq .profile "work" }}
-# Add route for 10.10.90.0/24 range
-if not ip route show | grep -q "via 10.10.90.200"
-    sudo ip route add 10.10.90.0/24 via 10.10.90.200
-end
-{{- end}}
+abbr ssho ssh -oHostKeyAlgorithms=+ssh-rsa
+abbr scpo scp -O -oHostKeyAlgorithms=+ssh-rsa
+{{- end }}

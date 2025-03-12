@@ -83,7 +83,7 @@ function check_git_repos
     echo -------------------------------------------
 
     # Find all git repositories and process them
-    for repo in (find $start_dir -type d -name ".git" | string replace -r '/\.git$' '')
+    for repo in (fd -t d -H '.git$' $start_dir | string replace -r '/\.git/$' '')
         __check_git_repo $repo
     end
 

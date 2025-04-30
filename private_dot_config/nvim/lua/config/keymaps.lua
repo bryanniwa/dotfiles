@@ -14,12 +14,6 @@ vim.keymap.set({ "n", "v" }, "<C-S-v>", '"+P', { noremap = true })
 vim.keymap.set("c", "<C-S-v>", "<C-R>+", { noremap = true })
 vim.keymap.set("i", "<C-S-v>", '<ESC>l"+Pli', { noremap = true })
 
--- Convenience mappings for capitalization
-vim.keymap.set("n", "<M-u>", "gul", { noremap = true })
-vim.keymap.set("n", "<M-U>", "gUl", { noremap = true })
-vim.keymap.set("v", "<M-u>", "gu", { noremap = true })
-vim.keymap.set("v", "<M-U>", "gU", { noremap = true })
-
 vim.keymap.set("n", "<leader>ms", function()
   Snacks.terminal("spotify_player")
 end)

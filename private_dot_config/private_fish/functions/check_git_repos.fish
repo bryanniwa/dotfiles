@@ -83,7 +83,10 @@ function check_git_repos
     echo -------------------------------------------
 
     # Find all git repositories and process them
-    for repo in (fd -t d -H '.git$' $start_dir | string replace -r '/\.git/$' '')
+    # NOTE: This also includes ignored directories which may be undesirable.
+    # I was finding that some git repos were being inexplicably skipped so some more digging
+    # may need to be done to solve that in a smarter way.
+    for repo in (fd -t d -u '.git$' $start_dir | string replace -r '/\.git/$' '')
         __check_git_repo $repo
     end
 

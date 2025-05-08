@@ -2,7 +2,6 @@ function check_git_repos
     # Function to check git repository status
     function __check_git_repo
         set -l repo_path $argv[1]
-        set -l repo_name (basename $repo_path)
         set -l has_changes 0
         set -l current_dir (pwd)
 
@@ -12,7 +11,7 @@ function check_git_repos
         # Check for uncommitted changes
         if test (git status --porcelain 2>/dev/null | wc -l) -gt 0
             set_color red
-            echo "$repo_name: Has uncommitted changes"
+            echo "$repo_path: Has uncommitted changes"
             set_color normal
             set has_changes 1
         end
@@ -29,13 +28,13 @@ function check_git_repos
                 set remote_branch (string replace "refs/heads/" "" $remote_branch)
                 if test (git log $remote/$remote_branch..$current_branch --oneline 2>/dev/null | wc -l) -gt 0
                     set_color yellow
-                    echo "$repo_name: Has unpushed commits on branch '$current_branch'"
+                    echo "$repo_path: Has unpushed commits on branch '$current_branch'"
                     set_color normal
                     set has_changes 1
                 end
             else
                 set_color yellow
-                echo "$repo_name: Branch '$current_branch' is not tracking any remote branch"
+                echo "$repo_path: Branch '$current_branch' is not tracking any remote branch"
                 set_color normal
                 set has_changes 1
             end
@@ -50,13 +49,13 @@ function check_git_repos
                 set remote_branch (string replace "refs/heads/" "" $remote_branch)
                 if test (git log $remote/$remote_branch..$branch --oneline 2>/dev/null | wc -l) -gt 0
                     set_color blue
-                    echo "$repo_name: Branch '$branch' has unpushed commits"
+                    echo "$repo_path: Branch '$branch' has unpushed commits"
                     set_color normal
                     set has_changes 1
                 end
             else
                 set_color cyan
-                echo "$repo_name: Branch '$branch' is not tracking any remote branch"
+                echo "$repo_path: Branch '$branch' is not tracking any remote branch"
                 set_color normal
                 set has_changes 1
             end
@@ -65,7 +64,7 @@ function check_git_repos
         # Print "clean" message if no changes found
         if test $has_changes -eq 0
             set_color green
-            echo "$repo_name: Clean"
+            echo "$repo_path: Clean"
             set_color normal
         end
 

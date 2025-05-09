@@ -61,6 +61,13 @@ function check_git_repos
             end
         end
 
+        if test (git stash list 2>/dev/null | wc -l) -gt 0
+            set_color magenta
+            echo "$repo_path: Has stashed changes"
+            set_color normal
+            set has_changes 1
+        end
+
         # Print "clean" message if no changes found
         if test $has_changes -eq 0
             set_color green

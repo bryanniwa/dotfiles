@@ -4,7 +4,9 @@ end
 
 zoxide init fish | source
 
+{{- if eq .profile "work"}}
 pyenv init - | source
+{{- end}}
 
 ### Navigation Helpers
 alias ... "cd ../.."
@@ -28,7 +30,7 @@ abbr gca!! git commit --amend --no-edit --all
 ## Chezmoi abbreviation
 abbr cm chezmoi
 
-{{- if eq .profile "personal" }}
+{{- if eq .platform "windows" }}
 ### Neovim
 set -gx XDG_RUNTIME_DIR /tmp/
 {{- end}}
@@ -37,9 +39,9 @@ set -gx XDG_RUNTIME_DIR /tmp/
 abbr dc docker compose
 
 ### Misc
-{{- if eq .profile "personal" }}
+{{- if eq .platform "windows" }}
 alias here "explorer.exe ."
-{{- else if eq .profile "work" }}
+{{- else if eq .platform "linux" }}
 alias here "open ."
 {{- end }}
 set -gx EDITOR nvim

@@ -1,0 +1,12 @@
+"$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
+
+[user]
+name = "Bryan Niwa"
+email = {{ .email | quote }}
+
+[ui]
+editor = ["nvim"]
+
+[fix.tools.ruff]
+command = ["/home/bniwa/.local/bin/ruff", "format", "--stdin-filename=$path"]
+patterns = ["glob:'**/*.py'"]

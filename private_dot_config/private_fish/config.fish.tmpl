@@ -3,9 +3,10 @@ if status is-interactive
 end
 
 zoxide init fish | source
+direnv hook fish | source
 
 {{- if eq .profile "work"}}
-pyenv init - | source
+pyenv init - fish | source
 {{- end}}
 
 ### Navigation Helpers
@@ -13,6 +14,7 @@ alias ... "cd ../.."
 alias .... "cd ../../.."
 
 ### Exa mappings
+abbr l eza
 abbr ls eza
 abbr ll "eza -l"
 abbr la "eza -la"
@@ -26,6 +28,11 @@ abbr gswm git switch \(__git.default_branch\)
 abbr gswd git switch develop
 abbr gc!! git commit --amend --no-edit
 abbr gca!! git commit --amend --no-edit --all
+
+### JJ abbreviations
+abbr jla jj log -r ::
+abbr jld jj log -T builtin_log_detailed
+abbr jlda jj log -r :: -T builtin_log_detailed
 
 ## Chezmoi abbreviation
 abbr cm chezmoi

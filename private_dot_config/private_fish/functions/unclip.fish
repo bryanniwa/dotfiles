@@ -1,3 +1,3 @@
 function unclip
-    xsel -ob >$argv[1]
+    wl-paste >$argv[1]
 end

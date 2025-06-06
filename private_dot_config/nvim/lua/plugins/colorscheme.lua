@@ -1,5 +1,5 @@
 return {
-  { "LazyVim/LazyVim", opts = { colorscheme = "catppuccin" } },
+  { "LazyVim/LazyVim", opts = { colorscheme = "rose-pine" } },
 
   {
     "folke/tokyonight.nvim",
@@ -33,6 +33,14 @@ return {
           enable_ui = true,
         },
       },
+    },
+  },
+
+  {
+    "rose-pine/neovim",
+    name = "rose-pine",
+    opts = {
+      dim_inactive_windows = true,
     },
   },
 

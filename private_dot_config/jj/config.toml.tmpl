@@ -6,7 +6,75 @@ email = {{ .email | quote }}
 
 [ui]
 editor = ["nvim"]
+conflict-marker-style = "git"
+default-command = "log"
+pager = ":builtin"
 
-[fix.tools.ruff]
-command = ["/home/bniwa/.local/bin/ruff", "format", "--stdin-filename=$path"]
+[aliases]
+la = ["log", "-r", "::"]
+ld = ["log", "-T", "builtin_log_detailed"]
+lda = ["log", "-r", "::", "-T", "builtin_log_detailed"]
+since = ["log", "-r", "since"]
+tug = [
+  "bookmark",
+  "move",
+  "--from",
+  "closest_bookmark(@)",
+  "--to",
+  "closest_pushable(@)",
+]
+gp = ["git", "push"]
+gf = ["git", "fetch"]
+
+[revset-aliases]
+# Make develop immutable as soon as it's been pushed
+"immutable_heads()" = "builtin_immutable_heads() | present(develop@origin)"
+"since" = "since(tracked_remote_bookmarks())"
+"since(target)" = "fork_point(@ | target)..target"
+"closest_bookmark(to)" = "heads(::to & bookmarks())"
+"closest_pushable(to)" = "heads(::to & mutable() & ~description(exact:\"\") & (~empty() | merges()))"
+"desc(x)" = "description(x)"
+
+[template-aliases]
+'format_short_signature(signature)' = 'signature.name()'
+
+[git]
+private-commits = "description(glob:'private:*')"
+colocate = true
+
+[working-copy]
+eol-conversion = "input"
+
+[fix.tools.ruff-format]
+command = [
+  "/home/bniwa/.local/share/nvim/mason/bin/ruff",
+  "format",
+  "--stdin-filename=$path",
+]
 patterns = ["glob:'**/*.py'"]
+
+[fix.tools.ruff-check]
+command = [
+  "/home/bniwa/.local/share/nvim/mason/bin/ruff",
+  "check",
+  "--fix",
+  "-q",
+  "--stdin-filename=$path",
+]
+patterns = ["glob:'**/*.py'"]
+
+[fix.tools.prettier]
+# Prefer the project's local prettier if present in node_modules
+command = ["$root/node_modules/.bin/prettier", "--stdin-filepath", "$path"]
+patterns = [
+  "glob:'**/*.js'",
+  "glob:'**/*.ts'",
+  "glob:'**/*.jsx'",
+  "glob:'**/*.tsx'",
+  "glob:'**/*.json'",
+  "glob:'**/*.css'",
+  "glob:'**/*.scss'",
+  "glob:'**/*.html'",
+  "glob:'**/*.md'",
+]
+

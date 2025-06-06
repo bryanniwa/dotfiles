@@ -2,6 +2,10 @@
 .python-version
 .prettierrc
 .lazy.lua
+.direnv/
+
+# C++ build outputs and lsp artifacts
 compile_commands.json
-__pycache__/
 .cache/
+
+__pycache__/

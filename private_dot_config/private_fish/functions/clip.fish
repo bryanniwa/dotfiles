@@ -1,3 +1,3 @@
 function clip
-    cat $argv[1] | xsel -ib
+    cat $argv[1] | wl-copy
 end

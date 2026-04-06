@@ -8,7 +8,12 @@ function scratch
         popd
         return 0
     end
-    set r /tmp/scratch/
-    set file "$r/$(xxd -l3 -ps /dev/urandom)"
+    set r "/tmp/scratch/"
+    if test -n "$argv[1]"
+        set ext $argv[1]
+        set file "$r/$(xxd -l3 -ps /dev/urandom).$ext"
+    else
+        set file "$r/$(xxd -l3 -ps /dev/urandom)"
+    end
     mkdir -p -- "$r" && nvim -- "$file"
 end

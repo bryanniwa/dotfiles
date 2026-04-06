@@ -19,18 +19,3 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   end,
   group = vim.api.nvim_create_augroup("disable_diagnostics_for_env_files", { clear = true }),
 })
-
--- Copied from the LazyVim repo so I can add more file types
-vim.api.nvim_create_autocmd("FileType", {
-  group = vim.api.nvim_create_augroup("close_with_q", { clear = false }),
-  pattern = { "AvanteInput", "AvanteTodos", "AvanteSelectedFiles", "Avante" },
-  callback = function(event)
-    vim.keymap.set("n", "q", function()
-      vim.cmd("AvanteToggle")
-    end, {
-      buffer = event.buf,
-      silent = true,
-      desc = "Toggle Avante",
-    })
-  end,
-})

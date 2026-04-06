@@ -5,42 +5,40 @@ name = "Bryan Niwa"
 email = {{ .email | quote }}
 
 [ui]
-editor = ["nvim"]
+editor = "nvim"
 conflict-marker-style = "git"
 default-command = "log"
 pager = ":builtin"
+
+[colors]
+"log commit diff files" = "yellow"
 
 [aliases]
 la = ["log", "-r", "::"]
 ld = ["log", "-T", "builtin_log_detailed"]
 lda = ["log", "-r", "::", "-T", "builtin_log_detailed"]
 since = ["log", "-r", "since"]
-tug = [
-  "bookmark",
-  "move",
-  "--from",
-  "closest_bookmark(@)",
-  "--to",
-  "closest_pushable(@)",
-]
 gp = ["git", "push"]
 gf = ["git", "fetch"]
+count = ["log", "--no-graph", "-T", "'.'"]
 
 [revset-aliases]
 # Make develop immutable as soon as it's been pushed
 "immutable_heads()" = "builtin_immutable_heads() | present(develop@origin)"
 "since" = "since(tracked_remote_bookmarks())"
 "since(target)" = "fork_point(@ | target)..target"
-"closest_bookmark(to)" = "heads(::to & bookmarks())"
+"closest_bookmark(to)" = "coalesce(heads(::to & bookmarks()), root())"
 "closest_pushable(to)" = "heads(::to & mutable() & ~description(exact:\"\") & (~empty() | merges()))"
 "desc(x)" = "description(x)"
+
+[revsets]
+"bookmark-advance-to" = "closest_pushable(@)"
 
 [template-aliases]
 'format_short_signature(signature)' = 'signature.name()'
 
 [git]
-private-commits = "description(glob:'private:*')"
-colocate = true
+private-commits = "description('private:*') | description('WIP:*')"
 
 [working-copy]
 eol-conversion = "input"
@@ -78,3 +76,11 @@ patterns = [
   "glob:'**/*.md'",
 ]
 
+[fix.tools.clang-format]
+command = ["/usr/bin/clang-format", "--assume-filename=$path"]
+patterns = [
+  "glob:'**/*.c'",
+  "glob:'**/*.cc'",
+  "glob:'**/*.cpp'",
+  "glob:'**/*.h'",
+]

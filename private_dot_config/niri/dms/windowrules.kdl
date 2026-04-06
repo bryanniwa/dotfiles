@@ -1,0 +1,86 @@
+// DMS Window Rules - Managed by DankMaterialShell
+// Do not edit manually - changes may be overwritten
+
+// @id=dms_rule_0 @name=
+window-rule {
+    match app-id="kitty"
+    open-maximized true
+}
+
+// @id=dms_rule_1 @name=
+window-rule {
+    match app-id="kitty" title="^half$"
+    default-column-width { proportion 0.5; }
+}
+
+// @id=dms_rule_3 @name=
+window-rule {
+    match app-id="zen_browser" title="^Picture-in-Picture$"
+    open-floating true
+}
+
+// @id=dms_rule_4 @name=
+window-rule {
+    match app-id="zen_browser"
+    open-maximized true
+    open-on-workspace "browser"
+}
+
+// @id=dms_rule_5 @name=
+window-rule {
+    match app-id="spotify"
+    open-maximized true
+    open-on-workspace "music"
+}
+
+// @id=dms_rule_6 @name=
+window-rule {
+    match app-id="com.github.IsmaelMartinez.teams_for_linux"
+    open-maximized true
+    open-on-workspace "teams"
+}
+
+// @id=dms_rule_7 @name=
+window-rule {
+    match app-id="com-st-microxplorer-maingui-STM32CubeMX"
+    open-maximized true
+}
+
+// @id=dms_rule_8 @name=
+window-rule {
+    match app-id="STM32CubePrgUpd"
+    open-floating true
+}
+
+// @id=dms_rule_9 @name=
+window-rule {
+    match app-id="STM32CubeIDE" title="^Properties for .*$"
+    default-column-width { fixed 1600; }
+}
+
+// @id=dms_rule_10 @name=
+window-rule {
+    match app-id="org.gnome.Calculator"
+    open-floating true
+}
+
+// @id=dms_rule_11 @name=
+window-rule {
+    match is-window-cast-target=true
+    focus-ring { active-color "#f38ba8"; }
+}
+
+// @id=wr_1773701000322528123 @name=File Picker
+window-rule {
+    match app-id="Nautilus" title="^File Upload - .*"
+    open-floating true
+    default-column-width { fixed 1274; }
+    default-window-height { fixed 758; }
+}
+
+// @id=wr_1773954161224781635 @name=File Picker - Teams
+window-rule {
+    match app-id="Nautilus" title="^Open Files$"
+    default-column-width { fixed 1274; }
+    default-window-height { fixed 758; }
+}

@@ -38,7 +38,7 @@ count = ["log", "--no-graph", "-T", "'.'"]
 'format_short_signature(signature)' = 'signature.name()'
 
 [git]
-private-commits = "description('private:*') | description('WIP:*')"
+private-commits = "description(regex-i:'private:|wip:')"
 
 [working-copy]
 eol-conversion = "input"
